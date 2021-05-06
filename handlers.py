@@ -10,6 +10,15 @@ command = 0
 
 userDate, userTask = 0,0
 
+async def checkDate(date, message):
+  global command
+  try:
+    time.strptime(date, 'dd.mm.yyyy')
+    return True
+  except ValueError:
+    await message.answer("Неправельный формат даты")  
+    command = 0
+
 async def send_to_admin(dp):
   await bot.send_message(chat_id=admin_id, text="Бот запущен")
 
